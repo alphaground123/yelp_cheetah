@@ -1817,3 +1817,14 @@ def test_allow_getvar_of_underscored_things():
     # Regression test for v0.11.0
     cls = compile_to_class('$self.getVar("foo_BAR1")')
     assert cls({'foo_BAR1': 'baz'}).respond() == 'baz'
+
+
+@pytest.mark.xfail
+def test_transaction_cleared_on_dummy_trans():
+    cls = compile_to_class(
+        '#def foo():#return "hello"\n'
+        '#def bar():world\n'
+    )
+    tmpl = cls()
+    assert tmpl.foo() == 'hello'
+    assert tmpl.bar() == 'world'
