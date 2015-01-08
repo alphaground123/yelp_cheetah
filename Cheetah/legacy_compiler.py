@@ -55,7 +55,7 @@ def genPlainVar(nameChunks):
 def genNameMapperVar(nameChunks):
     name, remainder = nameChunks[0]
     namept1, dot, rest = name.partition('.')
-    start = 'VFFSL("{}", locals(), globals(), self, NS){}{}{}'.format(namept1, dot, rest, remainder)
+    start = 'VFSL("{}", self, NS){}{}{}'.format(namept1, dot, rest, remainder)
     tail = genPlainVar(nameChunks[1:])
     return start + ('.' if tail else '') + tail
 
@@ -509,10 +509,10 @@ class LegacyCompiler(SettingsManager):
         )
         self._importStatements = [
             'import io',
-            'from Cheetah.NameMapper import value_from_frame_or_search_list as VFFSL',
+            'from Cheetah.NameMapper import value_from_search_list as VFSL',
             'from Cheetah.Template import NO_CONTENT',
         ]
-        self._global_vars = {'io', 'NO_CONTENT', 'VFFSL'}
+        self._global_vars = {'io', 'NO_CONTENT', 'VFSL'}
 
         self._gettext_scannables = []
 

@@ -722,7 +722,7 @@ class _LowLevelParser(SourceReader):
         """
         expr_pos = self.pos()
         expr = self.getExpression(**kwargs)
-        if 'VFFSL(' in expr:
+        if 'VFSL(' in expr:
             self.setPos(expr_pos)
             raise ParseError(self, failure_msg)
         return expr
