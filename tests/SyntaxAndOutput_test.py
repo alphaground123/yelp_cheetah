@@ -627,13 +627,13 @@ $x$y#slurp
 2#slurp
 #call self.meth
 3#slurp
-#end call 3
+#end call
 #py two = 2
 #call self.meth2 y=int(10/two)
 4#slurp
-#end call 4
-#end call 2
-#end call 1''',
+#end call
+#end call
+#end call''',
                     "12345")
 
 
@@ -1035,10 +1035,10 @@ this is a test block
 outer
 #block innerNest
 inner
-#end block innerNest
-#end block outerNest
+#end block
+#end block
 ---
-#end block testBlock
+#end block
 """,
                     "this is a test block\nouter\ninner\n---\n")
 
@@ -1779,7 +1779,7 @@ def test_with_statement_call():
         before.
         #call self.embolden
             #yield
-        #end call xxx
+        #end call
         after.
     #end def
 
